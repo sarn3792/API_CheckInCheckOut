@@ -224,7 +224,7 @@ namespace API_CheckInCheckOut.Controllers
         // GET api/Account/ExternalLogin
         [HttpPost, Route("token")]
         [AllowAnonymous]
-        public IHttpActionResult GetExternalLogin(LoginModel login)
+        public async Task <IHttpActionResult> GetExternalLogin(LoginModel login)
         {
             //if (error != null)
             //{
@@ -285,7 +285,7 @@ namespace API_CheckInCheckOut.Controllers
 
                 if (!_loginProvider.ValidateCredentials(login.UserName, login.Password, out identity))
                 {
-                    return BadRequest("Incorrect user or password");
+                    return BadRequest("Usuario y/o contraseña incorrectos");
                 }
 
                 var ticket = new AuthenticationTicket(identity, new AuthenticationProperties());
@@ -293,12 +293,10 @@ namespace API_CheckInCheckOut.Controllers
                 //ticket.Properties.IssuedUtc = currentUtc;
                 //ticket.Properties.ExpiresUtc = currentUtc.Add(TimeSpan.FromMinutes(30));
 
-
-                return Ok(new LoginAccessModel
-                {
-                    UserName = login.UserName,
-                    AccessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket)
-                });
+                LoginAccessModel loginInformation = new LoginAccessModel(login.UserName);
+                loginInformation.AccessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
+                loginInformation.UserIDCRM = await loginInformation.GetCRM();
+                return Ok(loginInformation);
             } 
             catch (Exception ex)
             {

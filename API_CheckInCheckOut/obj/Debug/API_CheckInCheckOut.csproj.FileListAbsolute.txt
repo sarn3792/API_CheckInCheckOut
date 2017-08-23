@@ -89,3 +89,5 @@ c:\users\samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_Ch
 c:\users\samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_CheckInCheckOut\bin\System.Web.Http.Owin.xml
 c:\users\samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_CheckInCheckOut\obj\Debug\API_CheckInCheckOut.dll
 c:\users\samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_CheckInCheckOut\obj\Debug\API_CheckInCheckOut.pdb
+C:\Users\Samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_CheckInCheckOut\bin\System.Web.Http.Cors.dll
+C:\Users\Samuel\documents\visual studio 2015\Projects\API_CheckInCheckOut\API_CheckInCheckOut\bin\System.Web.Http.Cors.xml
