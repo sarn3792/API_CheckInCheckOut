@@ -5,7 +5,7 @@ using System.Web;
 
 namespace API_CheckInCheckOut.Models
 {
-    public static class DBSingleton
+    public sealed class DBSingleton
     {
         /// <summary>
         /// this class create DBSettings object using Singleton pattern
