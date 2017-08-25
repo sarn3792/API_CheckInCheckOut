@@ -79,7 +79,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/22/2013 07:43:40</publishTime>
     </File>
     <File Include="bin/API_CheckInCheckOut.dll">
-      <publishTime>08/24/2017 17:28:33</publishTime>
+      <publishTime>08/25/2017 10:37:36</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>08/18/2017 11:07:12</publishTime>

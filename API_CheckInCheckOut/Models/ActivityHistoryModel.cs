@@ -21,14 +21,14 @@ namespace API_CheckInCheckOut.Models
                         query = String.Format(@"UPDATE un_historialactividadproyectoBase SET un_Fecha = '{0}',  
                                                un_Latitud = '{1}', un_Longitud = '{2}', un_User = '{3}'
                                                WHERE un_Actividad = '{4}' AND un_Estatus = 1", 
-                                               DateTime.Now.ToString("yyyy-MM-dd HH':'mm':'ss"), obj.latitude, obj.longitude, obj.userID, obj.activityID);
+                                               obj.date.ToString("yyyy-MM-dd HH':'mm':'ss"), obj.latitude, obj.longitude, obj.userID, obj.activityID);
                     }
                     else //check out
                     {
                         query = String.Format(@"UPDATE un_historialactividadproyectoBase SET un_Fecha = '{0}',  
                                                un_Latitud = '{1}', un_Longitud = '{2}', un_User = '{3}'
                                                WHERE un_Actividad = '{4}' AND un_Estatus = 0",
-                                               DateTime.Now.ToString("yyyy-MM-dd HH':'mm':'ss"), obj.latitude, obj.longitude, obj.userID, obj.activityID);
+                                               obj.date.ToString("yyyy-MM-dd HH':'mm':'ss"), obj.latitude, obj.longitude, obj.userID, obj.activityID);
                     }
                     await DBSingleton.GetDB().ExecuteQuery(query);
                 }
@@ -103,7 +103,7 @@ namespace API_CheckInCheckOut.Models
         public string longitude { get; set; }
         public string userID { get; set; }
         public bool checkInCheckOut { get; set;}
-        //public DateTime date { get; set; }
+        public DateTime date { get; set; }
         //public DateTime date = DateTime.Now;
         public string activityID { get; set; }
     }
