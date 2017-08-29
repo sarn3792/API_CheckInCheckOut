@@ -43,7 +43,7 @@ namespace API_CheckInCheckOut.Models
         {
             try
             {
-                String query = String.Format(@"SELECT DATEDIFF(hour, x.FechaCheckIn, y.FechaCheckOut) as 'Hours', 
+                String query = String.Format(@"SELECT DATEDIFF(second, x.FechaCheckIn, y.FechaCheckOut) / 3600 as 'Hours', 
 		                                            DATEDIFF(MINUTE, x.FechaCheckIn, y.FechaCheckOut) % 60 as 'Minutes'
                                             FROM
 	                                            (

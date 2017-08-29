@@ -13,7 +13,7 @@ namespace API_CheckInCheckOut.Models
         {
             try
             {
-                String query = String.Format(@"SELECT ac.un_name, ac.un_actividaddeproyectoId
+                String query = String.Format(@"SELECT op.Name, ac.un_name, ac.un_actividaddeproyectoId
                                             FROM Opportunity op 
                                             INNER JOIN un_actividaddeproyectoBase ac ON op.OpportunityId = ac.un_proyecto
                                             WHERE op.un_noproyecto = '{0}' and op.StatusCode = 1 and ac.statuscode = 1 ", idProject);
@@ -22,7 +22,8 @@ namespace API_CheckInCheckOut.Models
                 List<Activity> data = aux.AsEnumerable().Select(m => new Activity()
                 {
                     description = m.Field<string>("un_name"),
-                    idActivity = Convert.ToString(m.Field<Guid>("un_actividaddeproyectoId"))
+                    idActivity = Convert.ToString(m.Field<Guid>("un_actividaddeproyectoId")),
+                    projectName = m.Field<string>("Name")
                 }).ToList();
 
                 return data;
@@ -56,6 +57,6 @@ namespace API_CheckInCheckOut.Models
     {
         public string description { get; set; }
         public string idActivity { get; set; }
-
+        public string projectName { get; set; }
     }
 }

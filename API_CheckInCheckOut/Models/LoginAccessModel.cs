@@ -12,27 +12,32 @@ namespace API_CheckInCheckOut.Models
         public string UserName { get; set; }
         public string AccessToken { get; set; }
         public string UserIDCRM { get; set; }
+        public string FullName { get; set; }
 
         public LoginAccessModel(string userName)
         {
             this.UserName = userName;
+            Task.Run(() => this.GetCRM()).Wait();
         }
 
-        public async Task<string> GetCRM()
+        private async Task GetCRM()
         {
             try
             {
-                String query = String.Format(@"SELECT SystemUserId
+                String query = String.Format(@"SELECT SystemUserId, FullName
                                                 FROM SystemUser
                                                 WHERE DomainName = 'UN\{0}'", this.UserName);
 
                 DataTable aux = await DBSingleton.GetDB().GetDataTable(query);
                 if(aux.Rows.Count > 0)
                 {
-                    return aux.Rows[0]["SystemUserId"].ToString();
+                    this.UserIDCRM = aux.Rows[0]["SystemUserId"].ToString();
+                    this.FullName = aux.Rows[0]["FullName"].ToString();
                 }
-
-                throw new Exception("Usuario no encontrado en el CRM");
+                else
+                {
+                    throw new Exception("Usuario no encontrado en el CRM");
+                }
             }
             catch (Exception ex)
             {

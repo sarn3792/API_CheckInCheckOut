@@ -224,7 +224,7 @@ namespace API_CheckInCheckOut.Controllers
         // GET api/Account/ExternalLogin
         [HttpPost, Route("token")]
         [AllowAnonymous]
-        public async Task <IHttpActionResult> GetExternalLogin(LoginModel login)
+        public IHttpActionResult GetExternalLogin(LoginModel login)
         {
             //if (error != null)
             //{
@@ -295,7 +295,6 @@ namespace API_CheckInCheckOut.Controllers
 
                 LoginAccessModel loginInformation = new LoginAccessModel(login.UserName);
                 loginInformation.AccessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
-                loginInformation.UserIDCRM = await loginInformation.GetCRM();
                 return Ok(loginInformation);
             } 
             catch (Exception ex)
