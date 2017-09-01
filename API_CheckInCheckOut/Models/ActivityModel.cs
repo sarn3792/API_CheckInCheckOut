@@ -41,7 +41,7 @@ namespace API_CheckInCheckOut.Models
             {
                 foreach(string act in data)
                 {
-                    String query = String.Format("UPDATE un_actividaddeproyectoBase SET statuscode = 2 WHERE un_actividaddeproyectoId = '{0}'", act);
+                    String query = String.Format("UPDATE un_actividaddeproyectoBase SET statuscode = 2, statecode = 1 WHERE un_actividaddeproyectoId = '{0}'", act);
                     await DBSingleton.GetDB().ExecuteQuery(query);
                 }
                 
